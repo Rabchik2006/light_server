@@ -1,0 +1,36 @@
+.data_show{
+    margin-top: 50px;
+    color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /*border: 1px solid red;*/
+    background: #aeec94;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.data_show_cell{
+    height: 100px;
+    width: 130px;
+    border: 50px ridge green;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.base_form{
+    margin-top: 50px;
+    color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /*border: 1px solid red;*/
+    background: #aeec94;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.base_form_cell{
+    height: 100px;
+    width: 300px;
+    border: 50px ridge green;
+    margin-left: 25px;
+    margin-right: 25px;
+}

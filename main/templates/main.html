@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body style="background: #aeec94;">
+<div class=base_form>
+<div class=base_form_cell>
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+    {% for field in form %}
+    <tr><td><span>{{field.name}}</span></td> <td>{{field}}</td> <td><span style="color:red;">{{field.errors.as_text}}</span></td></tr>
+    {% endfor %}
+    <tr><td><button>Ok</button></tr></td>
+    </table>
+</form>
+</div>
+<div class=base_form_cell>
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+    <tr><td><input type="checkbox" name="switch" id="switch"><label for="switch">Включить</label></td></tr>
+    <tr><td><button>Ok</button></td></tr>
+    </table>
+    <input type="button" id="on_button" value="ON">
+    <input type="button" id="off_button" value="OFF">
+</form>
+</div>
+</div>
+<div>
+</div>
+<div class=data_show>
+    <div class=data_show_cell>
+    <table>
+    <tr><td><span>Тип:</span></td><td><span>Текущий</span></td></tr>
+    {% for i, key in data.items %}
+        <tr><td>{{i}}</td><td>{{key}}</td></tr>
+    {% endfor %}
+    </table>
+    </div>
+    <div class=data_show_cell>
+    <table>
+    <tr><td><span>Тип:</span></td><td><span>Задано</span></td></tr>
+    {% for i, key in old_data.items %}
+        <tr><td>{{i}}</td><td>{{key}}</td></tr>
+    {% endfor %}
+    </table>
+    </div>
+</div>
+<script>
+    let on_button=document.getElementById('on_button')
+    let off_button=document.getElementById('off_button')
+    on_button.addEventListener('click',fn1)
+    off_button.addEventListener('click',fn1)
+    function fn1(st) {
+        let input_id=st['path'][0]['id']
+        let ans='error'
+        console.log(input_id)
+        if (input_id==='on_button') {
+            ans = 1
+        }
+        if (input_id==='off_button') {
+            ans = 0
+        }
+        fetch('http://127.0.0.1:8000/api/',{
+            method:'POST',
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({'state':ans})
+        })
+    }
+</script>
+</body>
+</html>
