@@ -21,5 +21,5 @@ def loop():
         else:
             cond='no'
         print({cond}, f'Требeуется {data["hour"]}:{data["minute"]} Текущее: {get_time()}')
-
+        time.sleep(60)
 loop()
