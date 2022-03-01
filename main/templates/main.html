@@ -15,7 +15,7 @@
     {% for field in form %}
     <tr><td><span>{{field.name}}</span></td> <td>{{field}}</td> <td><span style="color:red;">{{field.errors.as_text}}</span></td></tr>
     {% endfor %}
-    <tr><td><button>Ok</button></tr></td>
+    <tr><td><button>Ok</button></td></tr>
     </table>
 </form>
 </div>
@@ -23,6 +23,7 @@
     <div class=base_form_cell_inner>
         <input class="big_button" type="button" id="on_button" value="ON">
         <input class="big_button" type="button" id="off_button" value="OFF">
+        <a href=""><button class="big_button">RELOAD</button></a>
     </div>
 </div>
 </div>
