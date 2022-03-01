@@ -6,13 +6,16 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-import RPi.GPIO as GP
 
+if os.environ.get('GPIO_EXIST'):
+    import RPi.GPIO as GP
+    pin = int(os.environ.get('LIGHT_PIN'))
+    GP.setmode(GP.BCM)
+    GP.setup(pin,GP.OUT)
+else:
+    import repl_gp as GP
+    pin='None'
 
-
-GP.setmode(GP.BCM)
-pin=int(os.environ.get('LIGHT_PIN'))
-GP.setup(pin,GP.OUT)
 
 def main_page(request):
     form=TimeForm()
@@ -43,7 +46,7 @@ def main_page(request):
 
 class RestApiLight(APIView):
     def post(self, request):
-        print(request.data)
+        # print(request.data)
         GP.output(pin,request.data['state'])
         return Response('hello')
 

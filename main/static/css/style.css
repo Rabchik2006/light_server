@@ -34,3 +34,15 @@
     margin-left: 25px;
     margin-right: 25px;
 }
+.base_form_cell_inner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.big_button{
+    width: 50px;
+    height: 50px;
+    margin-top: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

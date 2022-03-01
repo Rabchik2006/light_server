@@ -20,18 +20,11 @@
 </form>
 </div>
 <div class=base_form_cell>
-<form action="" method="POST">
-    {% csrf_token %}
-    <table>
-    <tr><td><input type="checkbox" name="switch" id="switch"><label for="switch">Включить</label></td></tr>
-    <tr><td><button>Ok</button></td></tr>
-    </table>
-    <input type="button" id="on_button" value="ON">
-    <input type="button" id="off_button" value="OFF">
-</form>
+    <div class=base_form_cell_inner>
+        <input class="big_button" type="button" id="on_button" value="ON">
+        <input class="big_button" type="button" id="off_button" value="OFF">
+    </div>
 </div>
-</div>
-<div>
 </div>
 <div class=data_show>
     <div class=data_show_cell>
