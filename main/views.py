@@ -7,6 +7,7 @@ import json,os
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 
 
 if os.environ.get('GPIO_EXIST'):
@@ -47,6 +48,8 @@ def main_page(request):
 
 
 class RestApiLight(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
         # print(request.data)
         GP.output(pin,request.data['state'])
