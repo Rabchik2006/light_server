@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render,HttpResponse
 from main.forms import TimeForm
 import json,os
@@ -16,7 +18,7 @@ else:
     import repl_gp as GP
     pin='None'
 
-
+@login_required(login_url='/login/')
 def main_page(request):
     form=TimeForm()
     with open('data.json','r') as f:
@@ -55,3 +57,8 @@ def rest_api_light(request):
     if request.method=="POST":
         print(request.data)
     return Response('hello')
+
+
+class UserLoginView(LoginView):
+    template_name = 'login.html'
+    next_page = '/'

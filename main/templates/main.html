@@ -46,6 +46,8 @@
     </div>
 </div>
 <script>
+    let cookies=document.cookie
+    let token=cookies.slice(cookies.indexOf('csrftoken')+10)
     let on_button=document.getElementById('on_button')
     let off_button=document.getElementById('off_button')
     on_button.addEventListener('click',fn1)
@@ -62,7 +64,7 @@
         }
         fetch('{% url "main:rest_page" %}',{
             method:'POST',
-            headers:{"Content-Type":"application/json"},
+            headers:{"Content-Type":"application/json","X-CSRFToken":token},
             body:JSON.stringify({'state':ans})
         })
     }
