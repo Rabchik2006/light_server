@@ -26,18 +26,17 @@ def main_page(request):
     if request.method=='POST':
         print(request.POST)
         unf_data=dict(request.POST)
-
         print(unf_data)
-        context.update({'data':unf_data})
         if unf_data['hour']!=None and unf_data['minute']!=None:
             data={'hour':int(unf_data['hour'][0]),'minute':int(unf_data['minute'][0])}
-            if data.get('condition'):
+            if unf_data.get('condition'):
                 data['condition']=1
             else:
                 data['condition']=0
+            context.update({'data': data})
             with open('data.json','w') as f:
                 json.dump(data,f,indent=4)
-    return render(request,'main.html')
+    return render(request,'main.html',context)
 
 
 class RestApiLight(APIView):
