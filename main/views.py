@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render,HttpResponse
-from main.forms import TimeForm
 import json,os
 
 from rest_framework.decorators import api_view
@@ -21,30 +20,24 @@ else:
 
 @login_required(login_url='/login/')
 def main_page(request):
-    form=TimeForm()
     with open('data.json','r') as f:
         old_data=json.load(f)
-    context={'form':form,'old_data':old_data}
+    context={'old_data':old_data}
     if request.method=='POST':
         print(request.POST)
-        if request.POST.get('hour',None)!=None:
-            form=TimeForm(request.POST)
-            if form.is_valid():
-                data=form.cleaned_data
-                print(data)
-                context.update({'data':data})
-                if data['hour']!=None and data['minute']!=None and (data['condition']=='on' or data['condition']=='off'):
-                    with open('data.json','w') as f:
-                        json.dump(data,f,indent=4)
-            context.update({'form': form})
-        else:
-            if request.POST.get('switch',None)!=None:
-                GP.output(pin,1)
-                pass
+        unf_data=dict(request.POST)
+
+        print(unf_data)
+        context.update({'data':unf_data})
+        if unf_data['hour']!=None and unf_data['minute']!=None:
+            data={'hour':int(unf_data['hour'][0]),'minute':int(unf_data['minute'][0])}
+            if data.get('condition'):
+                data['condition']=1
             else:
-                GP.output(pin,0)
-                pass
-    return render(request,'main.html',context)
+                data['condition']=0
+            with open('data.json','w') as f:
+                json.dump(data,f,indent=4)
+    return render(request,'main.html')
 
 
 class RestApiLight(APIView):

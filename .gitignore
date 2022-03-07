@@ -8,6 +8,7 @@ __pycache__/
 
 *.save
 .idea
+data.json
 
 # Distribution / packaging
 .Python

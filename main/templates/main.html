@@ -12,10 +12,10 @@
 <form action="" method="POST">
     {% csrf_token %}
     <table>
-    {% for field in form %}
-    <tr><td><span>{{field.name}}</span></td> <td>{{field}}</td> <td><span style="color:red;">{{field.errors.as_text}}</span></td></tr>
-    {% endfor %}
-    <tr><td><button>Ok</button></td></tr>
+        <tr><td><label for="hour_input">Час </label></td><td><input type="text" id="hour_input" name="hour"></td></tr>
+        <tr><td><label for="min_input">Минута </label></td><td><input type="text" id="min_input" name="minute"></td></tr>
+        <tr><td><label for="cond_input">Состояние </label></td><td><input type="checkbox" id="cond_input" name="condition"></td></tr>
+        <tr><td><button>Ok</button></td></tr>
     </table>
 </form>
 </div>

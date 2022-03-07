@@ -1,5 +1,5 @@
 {
-    "hour": 10,
-    "minute": 1,
-    "condition": "off"
+    "hour": 7,
+    "minute": 20,
+    "condition": 0
 }
